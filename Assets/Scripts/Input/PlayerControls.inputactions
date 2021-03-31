@@ -80,6 +80,17 @@
                 },
                 {
                     "name": "",
+                    "id": "44b6e2ac-aff3-465f-b83d-2946b7111cf8",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4989e15d-ac91-45f9-854c-202194a3c339",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
