@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraHandler : MonoBehaviour
+public class CameraHandler : Singleton<CameraHandler>
 {
     public Transform targetTransform;
     public Transform cameraTransform;
@@ -11,7 +11,6 @@ public class CameraHandler : MonoBehaviour
     private Vector3 cameraTransformPosition;
     private Vector3 cameraFollowVelocity = Vector3.zero;
     private LayerMask ignoreLayers;
-
     public static CameraHandler singleton;
     public float lookSpeed = 0.1f;
     public float followSpeed = 0.1f;
@@ -30,10 +29,13 @@ public class CameraHandler : MonoBehaviour
 
     private void Awake()
     {
-        singleton = this;
+        //singleton = this;
         myTransform = transform;
         defaultPosition = cameraTransform.localPosition.z;
         ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
+
+        // Force find player target to fix camera not following bug
+        // targetTransform = FindObjectOfType<PlayerLocomotion>().transform;
     }
 
     public void FollowTarget(float delta)

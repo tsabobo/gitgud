@@ -18,7 +18,7 @@ public class InputHandler : MonoBehaviour
 
     private void Awake()
     {
-        cameraHandler = CameraHandler.singleton;
+        cameraHandler = CameraHandler.Instance;
     }
 
     private void FixedUpdate()
