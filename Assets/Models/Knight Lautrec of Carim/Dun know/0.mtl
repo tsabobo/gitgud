@@ -1,0 +1,67 @@
+# Blender MTL File: 'ModelRenderLighting2.blend'
+# Material Count: 5
+
+newmtl 4_EmbracedArmorofFavor2_0.2_0_0
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.616417 0.506449 0.545060
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd D:\Dropbox (Personal)\Shared Files\XPS\Knight Lautrec of Carim,Dark Souls\Embraced Armor of Favor2.tga
+map_Bump D:\\Dropbox (Personal)\\Shared Files\\XPS\\Knight Lautrec of Carim,Dark Souls\\Embraced Armor of Favor2 N.tga
+map_d D:\\Dropbox (Personal)\\Shared Files\\XPS\\Knight Lautrec of Carim,Dark Souls\\Embraced Armor of Favor2.tga
+
+newmtl 4_EmbracedArmorofFavor_0.2_0_0
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.617884 0.726469 0.508002
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd D:\Dropbox (Personal)\Shared Files\XPS\Knight Lautrec of Carim,Dark Souls\Embraced Armor of Favor.tga
+map_Bump D:\\Dropbox (Personal)\\Shared Files\\XPS\\Knight Lautrec of Carim,Dark Souls\\Embraced Armor of Favor N.tga
+map_d D:\\Dropbox (Personal)\\Shared Files\\XPS\\Knight Lautrec of Carim,Dark Souls\\Embraced Armor of Favor.tga
+
+newmtl 4_GauntletsofFavor_0.2_0_0
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.653723 0.437840 0.552715
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd D:\Dropbox (Personal)\Shared Files\XPS\Knight Lautrec of Carim,Dark Souls\Gauntlets of Favor.tga
+map_Bump D:\\Dropbox (Personal)\\Shared Files\\XPS\\Knight Lautrec of Carim,Dark Souls\\Gauntlets of Favor N.tga
+map_d D:\\Dropbox (Personal)\\Shared Files\\XPS\\Knight Lautrec of Carim,Dark Souls\\Gauntlets of Favor.tga
+
+newmtl 4_HelmofFavor_0.2_0_0
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.748037 0.568160 0.477748
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd D:\Dropbox (Personal)\Shared Files\XPS\Knight Lautrec of Carim,Dark Souls\Helm of Favor.tga
+map_Bump D:\\Dropbox (Personal)\\Shared Files\\XPS\\Knight Lautrec of Carim,Dark Souls\\Helm of Favor N.tga
+map_d D:\\Dropbox (Personal)\\Shared Files\\XPS\\Knight Lautrec of Carim,Dark Souls\\Helm of Favor.tga
+
+newmtl 6_LeggingsofFavor_0.2_0_0
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.703572 0.675513 0.496639
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Kd D:\Dropbox (Personal)\Shared Files\XPS\Knight Lautrec of Carim,Dark Souls\Leggings of Favor.tga
+map_Bump D:\\Dropbox (Personal)\\Shared Files\\XPS\\Knight Lautrec of Carim,Dark Souls\\Leggings of Favor N.tga
+map_d D:\\Dropbox (Personal)\\Shared Files\\XPS\\Knight Lautrec of Carim,Dark Souls\\Leggings of Favor.tga
