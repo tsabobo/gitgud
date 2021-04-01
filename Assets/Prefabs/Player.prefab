@@ -13,13 +13,14 @@ GameObject:
   - component: {fileID: 6962027849282843273}
   - component: {fileID: 6962027849282843274}
   - component: {fileID: 6962027849282843275}
+  - component: {fileID: 4125332230280432881}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6962027849282843270
 Transform:
   m_ObjectHideFlags: 0
@@ -82,6 +83,9 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
+  b_Input: 0
+  rollFlag: 0
+  isInteracting: 0
 --- !u!114 &6962027849282843275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +104,18 @@ MonoBehaviour:
   normalCamera: {fileID: 0}
   movementSpeed: 5
   rotationSpeed: 10
+--- !u!114 &4125332230280432881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6962027849282843271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0567ece0eddf3ae4da3f7041e5f61787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &6962027850046780869
 Animator:
   serializedVersion: 3
@@ -132,6 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 6962027850046780869}
+  inputHandler: {fileID: 6962027849282843274}
+  playerLocomotion: {fileID: 6962027849282843275}
   canRotate: 1
 --- !u!1001 &6962027849273992695
 PrefabInstance:

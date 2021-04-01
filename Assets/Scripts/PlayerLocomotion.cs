@@ -58,13 +58,8 @@ public class PlayerLocomotion : MonoBehaviour
         myTransform.rotation = targetRotation;
     }
 
-    #endregion
-
-    public void Update()
+    public void HandleMovement(float delta)
     {
-        float delta = Time.deltaTime;
-
-        inputHandler.TickInput(delta);
         moveDirection = cameraObject.forward * inputHandler.vertical;
         moveDirection += cameraObject.right * inputHandler.horizontal;
         moveDirection.Normalize();
@@ -80,6 +75,38 @@ public class PlayerLocomotion : MonoBehaviour
         {
             HandleRotation(delta);
         }
+    }
 
+    public void  HandleRollingAndSrinting(float delta)
+    {
+        if(animatorHandler.anim.GetBool("isInteracting"))
+            return;
+        if(inputHandler.rollFlag)
+        {
+            moveDirection = cameraObject.forward * inputHandler.vertical;
+            moveDirection += cameraObject.right * inputHandler.horizontal;
+
+            if(inputHandler.moveAmount > 0)
+            {
+                animatorHandler.PlayTargetAnimation("Rolling", true);
+                moveDirection.y = 0;
+                Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
+                myTransform.rotation = rollRotation;
+            }
+            else
+            {
+                animatorHandler.PlayTargetAnimation("Backstep", true);
+            }
+        }
+    }
+    #endregion
+
+    public void Update()
+    {
+        float delta = Time.deltaTime;
+
+        inputHandler.TickInput(delta);
+        HandleMovement(delta);
+        HandleRollingAndSrinting(delta);
     }
 }

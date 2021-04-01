@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1404098941860219128}
   - component: {fileID: 1404098941860219129}
   - component: {fileID: 1404098941860219134}
+  - component: {fileID: 2950420961725930571}
   m_Layer: 10
   m_Name: Knight Lautrec of Carim
   m_TagString: Untagged
@@ -82,6 +83,9 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
+  b_Input: 0
+  rollFlag: 0
+  isInteracting: 0
 --- !u!114 &1404098941860219134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +104,18 @@ MonoBehaviour:
   normalCamera: {fileID: 0}
   movementSpeed: 5
   rotationSpeed: 10
+--- !u!114 &2950420961725930571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404098941860219135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0567ece0eddf3ae4da3f7041e5f61787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1404098940454017799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 4762214820844087019}
+  inputHandler: {fileID: 1404098941860219129}
+  playerLocomotion: {fileID: 1404098941860219134}
   canRotate: 1
 --- !u!1001 &1404098940454017914
 PrefabInstance:
