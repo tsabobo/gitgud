@@ -7,6 +7,7 @@ public class PlayerLocomotion : MonoBehaviour
     Transform cameraObject;
     InputHandler inputHandler;
     Vector3 moveDirection;
+    PlayerManager playerManager;
 
     [HideInInspector]
     public Transform myTransform;
@@ -15,7 +16,7 @@ public class PlayerLocomotion : MonoBehaviour
     public new Rigidbody rigidbody;
     public GameObject normalCamera;
 
-    [Header("Stats")]
+    [Header("Movement Stats")]
     [SerializeField]
     float walkingSpeed = 1.5f;
     [SerializeField]
@@ -24,9 +25,10 @@ public class PlayerLocomotion : MonoBehaviour
     float sprintSpeed = 7;
     [SerializeField]
     float rotationSpeed = 10;
-    public bool isSprinting;
+
     void Start()
     {
+        playerManager = GetComponent<PlayerManager>();
         rigidbody = GetComponent<Rigidbody>();
         inputHandler = GetComponent<InputHandler>();
         animatorHandler = GetComponentInChildren<AnimatorHandler>();
@@ -84,7 +86,7 @@ public class PlayerLocomotion : MonoBehaviour
         if(inputHandler.sprintFlag)
         {
             speed = sprintSpeed;
-            isSprinting = true;
+            playerManager.isSprinting = true;
             moveDirection *= speed;
         }
         else
@@ -95,7 +97,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         rigidbody.velocity = projectedVelocity;
-        animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, isSprinting);
+        animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
         if (animatorHandler.canRotate)
         {
             HandleRotation(delta);
@@ -126,12 +128,4 @@ public class PlayerLocomotion : MonoBehaviour
     }
     #endregion
 
-    public void Update()
-    {
-        float delta = Time.deltaTime;
-        isSprinting = inputHandler.b_Input;
-        inputHandler.TickInput(delta);
-        HandleMovement(delta);
-        HandleRollingAndSrinting(delta);
-    }
 }

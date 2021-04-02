@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class AnimatorHandler : MonoBehaviour
 {
+    PlayerManager playerManager;
     public Animator anim;
-    public InputHandler inputHandler;
-    public PlayerLocomotion playerLocomotion;
+    InputHandler inputHandler;
+    PlayerLocomotion playerLocomotion;
     int vertical;
     int horizontal;
     public bool canRotate;
     public void Initialize()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
+        playerLocomotion = GetComponentInParent<PlayerLocomotion>();
+        
         anim = GetComponent<Animator>();
         vertical = Animator.StringToHash("Vertical");
         horizontal = Animator.StringToHash("Horizontal");
@@ -95,7 +99,7 @@ public class AnimatorHandler : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        if(inputHandler.isInteracting == false)
+        if(playerManager.isInteracting == false)
             return;
 
         float delta = Time.deltaTime;
