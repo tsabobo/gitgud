@@ -24,7 +24,7 @@ public class AnimatorHandler : MonoBehaviour
         anim.CrossFade(targetAnim, 0.2f);
     }
 
-    public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement)
+    public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting)
     {
         #region Vertical
         float v= 0;
@@ -74,6 +74,11 @@ public class AnimatorHandler : MonoBehaviour
         }
         #endregion
 
+        if(isSprinting)
+        {
+            v = 2;
+            h = horizontal;
+        }
         anim.SetFloat(vertical, v, 0.1f, Time.deltaTime);
         anim.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
     }

@@ -17,10 +17,14 @@ public class PlayerLocomotion : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField]
-    float movementSpeed = 5;
+    float walkingSpeed = 1.5f;
+    [SerializeField]
+    float runningSpeed = 5;
+    [SerializeField]
+    float sprintSpeed = 7;
     [SerializeField]
     float rotationSpeed = 10;
-
+    public bool isSprinting;
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -60,17 +64,38 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleMovement(float delta)
     {
+        if(inputHandler.rollFlag)
+            return;
+
         moveDirection = cameraObject.forward * inputHandler.vertical;
         moveDirection += cameraObject.right * inputHandler.horizontal;
         moveDirection.Normalize();
         moveDirection.y = 0;
 
-        float speed = movementSpeed;
-        moveDirection *= speed;
+        // When left stick is slightly tilt, character walks
+        float speed = walkingSpeed;
+        if(inputHandler.moveAmount >= 0.5f)
+        {
+            // When left stick is pushed further, character runs
+            speed = runningSpeed;
+        }
+
+        // When sprint button is pressed, character runs
+        if(inputHandler.sprintFlag)
+        {
+            speed = sprintSpeed;
+            isSprinting = true;
+            moveDirection *= speed;
+        }
+        else
+        {
+            moveDirection *= speed;
+        }
+        
 
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         rigidbody.velocity = projectedVelocity;
-        animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
+        animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, isSprinting);
         if (animatorHandler.canRotate)
         {
             HandleRotation(delta);
@@ -104,7 +129,7 @@ public class PlayerLocomotion : MonoBehaviour
     public void Update()
     {
         float delta = Time.deltaTime;
-
+        isSprinting = inputHandler.b_Input;
         inputHandler.TickInput(delta);
         HandleMovement(delta);
         HandleRollingAndSrinting(delta);

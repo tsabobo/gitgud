@@ -10,9 +10,11 @@ public class InputHandler : MonoBehaviour
     public float moveAmount;
     public float mouseX;
     public float mouseY;
-
+    // B button (east button on gamepad) is pressed 
     public bool b_Input;
+    public bool sprintFlag;
     public bool rollFlag;
+    public float rollInputTimer;
     public bool isInteracting;
 
     PlayerControls inputActions;
@@ -69,7 +71,17 @@ public class InputHandler : MonoBehaviour
         b_Input = inputActions.PlayerAction.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started; 
         if(b_Input)
         {
-            rollFlag = true;
+            rollInputTimer += delta;
+            sprintFlag = true;
+        }
+        else
+        {
+            if(rollInputTimer > 0 && rollInputTimer < 0.5f)
+            {
+                sprintFlag = false;
+                rollFlag = true;
+            }
+            rollInputTimer = 0;
         }
     }
 }
