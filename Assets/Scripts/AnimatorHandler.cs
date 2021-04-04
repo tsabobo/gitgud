@@ -10,6 +10,11 @@ public class AnimatorHandler : MonoBehaviour
     PlayerLocomotion playerLocomotion;
     int vertical;
     int horizontal;
+    public static string Falling_STATE = "Falling";
+    public static string Land_STATE = "Land";
+    public static string Locomotion_STATE = "Locomotion";
+    public static string Rolling_STATE = "Rolling";
+    public static string Backstep_STATE = "Backstep";
     public bool canRotate;
     public void Initialize()
     {

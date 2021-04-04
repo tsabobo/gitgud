@@ -13,12 +13,13 @@ public class PlayerManager : MonoBehaviour
     [Header("Player Flags")]
     public bool isSprinting;
     public bool isInteracting;
+    public bool isInAir;
+    public bool isGrounded;
     private void Awake()
     {
         cameraHandler = CameraHandler.Instance;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         inputHandler = GetComponent<InputHandler>();
@@ -26,7 +27,6 @@ public class PlayerManager : MonoBehaviour
         playerLocomotion = GetComponent<PlayerLocomotion>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Tick
@@ -37,6 +37,7 @@ public class PlayerManager : MonoBehaviour
         inputHandler.TickInput(delta);
         playerLocomotion.HandleMovement(delta);
         playerLocomotion.HandleRollingAndSrinting(delta);
+        playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
     }
 
     void FixedUpdate()
@@ -55,5 +56,10 @@ public class PlayerManager : MonoBehaviour
         inputHandler.rollFlag = false;
         inputHandler.sprintFlag = false;
         isSprinting = inputHandler.b_Input;
+
+        if(isInAir)
+        {
+            playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
+        }
     }
 }
