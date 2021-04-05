@@ -127,7 +127,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24036
+  m_Name: pb_Mesh-7206
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -388,7 +388,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-25774
+  m_Name: pb_Mesh-7216
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -804,7 +804,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-143558
+  m_Name: pb_Mesh-6754
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1083,11 +1083,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight Lautrec of Carim
       objectReference: {fileID: 0}
-    - target: {fileID: 1404098941860219135, guid: 203b8ed29b91d8d429e8ffa58f17bc06,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 203b8ed29b91d8d429e8ffa58f17bc06, type: 3}
 --- !u!1001 &3583591368652870045
@@ -1363,6 +1358,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fe52110c9cac164dbeafea2cd27f09e, type: 3}
+--- !u!1 &6962027848950443282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6962027849282843271, guid: 1fe52110c9cac164dbeafea2cd27f09e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6962027848950443281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6962027848950443283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6962027848950443282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0b7a2be0782144981e33d4b6cec722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightWeapon: {fileID: 11400000, guid: 7c76394e96247f74b8c3792bbede538a, type: 2}
+  leftWeapon: {fileID: 11400000, guid: 7c76394e96247f74b8c3792bbede538a, type: 2}
 --- !u!1001 &7911904912162672586
 PrefabInstance:
   m_ObjectHideFlags: 0
