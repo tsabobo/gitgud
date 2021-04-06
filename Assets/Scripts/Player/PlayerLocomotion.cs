@@ -102,7 +102,7 @@ public class PlayerLocomotion : MonoBehaviour
         }
 
         // When sprint button is pressed, character runs
-        if (inputHandler.sprintFlag)
+        if (inputHandler.sprintFlag && inputHandler.moveAmount > 0.5f)
         {
             speed = sprintSpeed;
             playerManager.isSprinting = true;
@@ -110,7 +110,16 @@ public class PlayerLocomotion : MonoBehaviour
         }
         else
         {
-            moveDirection *= speed;
+            if (inputHandler.moveAmount < 0.5f)
+            {
+                moveDirection *= walkingSpeed;
+                 playerManager.isSprinting = false;
+            }
+            else
+            {
+                moveDirection *= speed;
+                 playerManager.isSprinting = false;
+            }            
         }
 
 
@@ -183,7 +192,7 @@ public class PlayerLocomotion : MonoBehaviour
 
             // Landing Animation
             if (playerManager.isInAir)
-            {
+            {                
                 if (inAirTimer > 0.5f)
                 {
                     animatorHandler.PlayTargetAnimation(AnimatorHandler.Land_STATE, true);
@@ -192,7 +201,7 @@ public class PlayerLocomotion : MonoBehaviour
                 else
                 {
                     animatorHandler.PlayTargetAnimation(AnimatorHandler.Locomotion_STATE, false);
-                    inAirTimer = 0;
+                     inAirTimer = 0;
                 }
 
                 playerManager.isInAir = false;
@@ -219,11 +228,12 @@ public class PlayerLocomotion : MonoBehaviour
                 rigidbody.velocity = velocity * (runningSpeed / 2);
                 playerManager.isInAir = true;
             }
+            
             // TODO: fix bug that player get stuck at egde on stairs
             #region  dirty fix
             else
             {
-                bool isFallState = GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName(AnimatorHandler.Falling_STATE);
+                bool isFallState = animatorHandler.CheckCurrentAnimationState(AnimatorHandler.Falling_STATE);
 
                 if (inAirTimer > 0.5f && isFallState)
                 {

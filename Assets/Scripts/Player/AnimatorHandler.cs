@@ -31,6 +31,18 @@ public class AnimatorHandler : MonoBehaviour
         anim.applyRootMotion = isInteracting;
         anim.SetBool("isInteracting", isInteracting);
         anim.CrossFade(targetAnim, 0.2f);
+
+#region MY FIX
+// Fix bug that keeps falling from small platform, by adding transition betwenn "Falling" and "Empty" state
+        if(targetAnim == Locomotion_STATE)
+        {
+            anim.SetBool("isGrounded", true);
+        }
+        if(targetAnim == Falling_STATE)
+        {
+            anim.SetBool("isGrounded", false);
+        }
+# endregion
     }
 
     public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting)
@@ -86,7 +98,7 @@ public class AnimatorHandler : MonoBehaviour
         if(isSprinting)
         {
             v = 2;
-            h = horizontal;
+            h = horizontalMovement;
         }
         anim.SetFloat(vertical, v, 0.1f, Time.deltaTime);
         anim.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
@@ -100,6 +112,11 @@ public class AnimatorHandler : MonoBehaviour
     public void StopRotate()
     {
         canRotate = false;
+    }
+
+    public bool CheckCurrentAnimationState(string name)
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
 
     private void OnAnimatorMove()
