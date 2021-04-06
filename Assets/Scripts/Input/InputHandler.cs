@@ -12,19 +12,24 @@ public class InputHandler : MonoBehaviour
     public float mouseY;
     // B button (east button on gamepad) is pressed 
     public bool b_Input;
+    // RB button (R1)
+    public bool rb_Input;
+    // RT button (R2)
+    public bool rt_Input;
     public bool sprintFlag;
     public bool rollFlag;
     public float rollInputTimer;
-
-
     PlayerControls inputActions;
-
+    PlayerAttacker playerAttacker;
+    PlayerInventory playerInventory;
     Vector2 movementInput;
     Vector2 cameraInput;
 
-
-
-
+    void Awake()
+    {
+        playerAttacker = GetComponent<PlayerAttacker>();
+        playerInventory = GetComponent<PlayerInventory>();
+    }
 
     public void OnEnable() {
         if( inputActions == null)
@@ -44,6 +49,7 @@ public class InputHandler : MonoBehaviour
     {
         MoveInput(delta);
         HandleRollInput(delta);
+        HandleAttackInput(delta);
     }
 
     private void MoveInput(float delta)
@@ -71,6 +77,22 @@ public class InputHandler : MonoBehaviour
                 rollFlag = true;
             }
             rollInputTimer = 0;
+        }
+    }
+
+    private void HandleAttackInput(float delta)
+    {
+        inputActions.PlayerAction.RB.performed += i => rb_Input = true;
+        inputActions.PlayerAction.RT.performed += i => rt_Input = true;
+
+        if (rb_Input)
+        {
+            playerAttacker.HandleLightAttact(playerInventory.rightWeapon);
+        }
+
+        if (rt_Input)
+        {
+            playerAttacker.HandleHeavyAttact(playerInventory.rightWeapon);
         }
     }
 }
