@@ -62,6 +62,8 @@ GameObject:
   - component: {fileID: 1404098941860219134}
   - component: {fileID: 2950420961725930571}
   - component: {fileID: 1404098941722213324}
+  - component: {fileID: 1762777700}
+  - component: {fileID: 7970393278685151993}
   m_Layer: 10
   m_Name: Knight Lautrec of Carim
   m_TagString: Untagged
@@ -132,6 +134,8 @@ MonoBehaviour:
   mouseX: 0
   mouseY: 0
   b_Input: 0
+  rb_Input: 0
+  rt_Input: 0
   sprintFlag: 0
   rollFlag: 0
   rollInputTimer: 0
@@ -194,6 +198,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightWeapon: {fileID: 11400000, guid: 7c76394e96247f74b8c3792bbede538a, type: 2}
   leftWeapon: {fileID: 11400000, guid: 7c76394e96247f74b8c3792bbede538a, type: 2}
+--- !u!114 &1762777700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404098941860219135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3228cb3498dff41865447b094242fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7970393278685151993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404098941860219135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893115c6d5cae1b478d70895def8733d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthLevel: 10
+  maxHealth: 0
+  currentHealth: 0
 --- !u!114 &1404098940454017799
 MonoBehaviour:
   m_ObjectHideFlags: 0

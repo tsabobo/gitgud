@@ -15,6 +15,8 @@ public class AnimatorHandler : MonoBehaviour
     public static string Locomotion_STATE = "Locomotion";
     public static string Rolling_STATE = "Rolling";
     public static string Backstep_STATE = "Backstep";
+    public static string Damage_STATE = "Damage_01";
+    public static string Death_STATE = "Death";
     public bool canRotate;
     public void Initialize()
     {
