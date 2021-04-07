@@ -105,15 +105,10 @@ GameObject:
   - component: {fileID: 6962027849282843270}
   - component: {fileID: 6962027849282843272}
   - component: {fileID: 6962027849282843273}
-  - component: {fileID: 6962027849282843274}
-  - component: {fileID: 6962027849282843275}
-  - component: {fileID: 4125332230280432881}
-  - component: {fileID: 6962027848950443283}
-  - component: {fileID: 1428051016819222387}
-  - component: {fileID: 11884968968922354}
+  - component: {fileID: 417357821660695760}
   m_Layer: 10
-  m_Name: Player
-  m_TagString: Untagged
+  m_Name: Enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,9 +156,9 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &6962027849282843274
+--- !u!114 &417357821660695760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,101 +167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6962027849282843271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a289ca0ae48ea742bd2cc972b8719d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontal: 0
-  vertical: 0
-  moveAmount: 0
-  mouseX: 0
-  mouseY: 0
-  b_Input: 0
-  rb_Input: 0
-  rt_Input: 0
-  sprintFlag: 0
-  rollFlag: 0
-  rollInputTimer: 0
---- !u!114 &6962027849282843275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6962027849282843271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69ef9a85515f65b46b2557f8598d0d02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveDirection: {x: 0, y: 0, z: 0}
-  myTransform: {fileID: 0}
-  animatorHandler: {fileID: 0}
-  rigidbody: {fileID: 0}
-  normalCamera: {fileID: 0}
-  groundDetectionRayStartPoint: 0.5
-  minimumDistanceNeededToBeginFall: 1
-  groundDetectionRayDistance: 0.2
-  ignoreForGroundCheck:
-    serializedVersion: 2
-    m_Bits: 0
-  inAirTimer: 0
-  walkingSpeed: 1
-  runningSpeed: 5
-  sprintSpeed: 7
-  rotationSpeed: 10
-  fallingingSpeed: 80
---- !u!114 &4125332230280432881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6962027849282843271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0567ece0eddf3ae4da3f7041e5f61787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSprinting: 0
-  isInteracting: 0
-  isInAir: 0
-  isGrounded: 0
---- !u!114 &6962027848950443283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6962027849282843271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a0b7a2be0782144981e33d4b6cec722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightWeapon: {fileID: 11400000, guid: 7c76394e96247f74b8c3792bbede538a, type: 2}
-  leftWeapon: {fileID: 11400000, guid: 7c76394e96247f74b8c3792bbede538a, type: 2}
---- !u!114 &1428051016819222387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6962027849282843271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c3228cb3498dff41865447b094242fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11884968968922354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6962027849282843271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 893115c6d5cae1b478d70895def8733d, type: 3}
+  m_Script: {fileID: 11500000, guid: 35a8ca7fe5d0b4e4e846bdcc6f994e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   healthLevel: 10
@@ -291,20 +192,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6962027850046780866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7809099507435002022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21e41f8386a2fb249b1ff41391cc0a1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 6962027850046780869}
-  canRotate: 1
 --- !u!1001 &6962027849273992695
 PrefabInstance:
   m_ObjectHideFlags: 0

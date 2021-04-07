@@ -35,7 +35,7 @@ public class CameraHandler : Singleton<CameraHandler>
         ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
 
         // Force find player target to fix camera not following bug
-        // targetTransform = FindObjectOfType<PlayerLocomotion>().transform;
+        targetTransform = FindObjectOfType<PlayerManager>().transform;
     }
 
     public void FollowTarget(float delta)

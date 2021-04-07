@@ -13,6 +13,7 @@ public class AnimatorHandler : MonoBehaviour
     public static string Falling_STATE = "Falling";
     public static string Land_STATE = "Land";
     public static string Locomotion_STATE = "Locomotion";
+    public static string Empty_STATE = "Empty";
     public static string Rolling_STATE = "Rolling";
     public static string Backstep_STATE = "Backstep";
     public static string Damage_STATE = "Damage_01";
