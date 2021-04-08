@@ -1,4 +1,4 @@
-﻿    using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,11 +17,13 @@ public class InputHandler : MonoBehaviour
     // RT button (R2)
     public bool rt_Input;
     public bool sprintFlag;
+    public bool comboFlag;
     public bool rollFlag;
     public float rollInputTimer;
     PlayerControls inputActions;
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
+    PlayerManager playerManager;
     Vector2 movementInput;
     Vector2 cameraInput;
 
@@ -29,10 +31,12 @@ public class InputHandler : MonoBehaviour
     {
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
+        playerManager = GetComponent<PlayerManager>();
     }
 
-    public void OnEnable() {
-        if( inputActions == null)
+    public void OnEnable()
+    {
+        if (inputActions == null)
         {
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
@@ -41,7 +45,8 @@ public class InputHandler : MonoBehaviour
 
         inputActions.Enable();
     }
-    private void OnDisable() {
+    private void OnDisable()
+    {
         inputActions.Disable();
     }
 
@@ -63,15 +68,15 @@ public class InputHandler : MonoBehaviour
 
     private void HandleRollInput(float delta)
     {
-        b_Input = inputActions.PlayerAction.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started; 
-        if(b_Input)
+        b_Input = inputActions.PlayerAction.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+        if (b_Input)
         {
             rollInputTimer += delta;
             sprintFlag = true;
         }
         else
         {
-            if(rollInputTimer > 0 && rollInputTimer < 0.5f)
+            if (rollInputTimer > 0 && rollInputTimer < 0.5f)
             {
                 sprintFlag = false;
                 rollFlag = true;
@@ -87,11 +92,26 @@ public class InputHandler : MonoBehaviour
 
         if (rb_Input)
         {
-            playerAttacker.HandleLightAttact(playerInventory.rightWeapon);
+            if (playerManager.canDoCombo)
+            {
+                comboFlag = true;
+                playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                comboFlag = false;
+            }
+            else
+            {
+                playerAttacker.HandleLightAttact(playerInventory.rightWeapon);
+            }
         }
 
         if (rt_Input)
         {
+            if (playerManager.canDoCombo)
+            {
+                comboFlag = true;
+                playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                comboFlag = false;
+            }
             playerAttacker.HandleHeavyAttact(playerInventory.rightWeapon);
         }
     }

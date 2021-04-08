@@ -23,7 +23,7 @@ public class AnimatorHandler : MonoBehaviour
     {
         playerManager = GetComponentInParent<PlayerManager>();
         playerLocomotion = GetComponentInParent<PlayerLocomotion>();
-        
+
         anim = GetComponent<Animator>();
         vertical = Animator.StringToHash("Vertical");
         horizontal = Animator.StringToHash("Horizontal");
@@ -35,24 +35,24 @@ public class AnimatorHandler : MonoBehaviour
         anim.SetBool("isInteracting", isInteracting);
         anim.CrossFade(targetAnim, 0.2f);
 
-#region MY FIX
-// Fix bug that keeps falling from small platform, by adding transition betwenn "Falling" and "Empty" state
-        if(targetAnim == Locomotion_STATE)
+        #region MY FIX
+        // Fix bug that keeps falling from small platform, by adding transition betwenn "Falling" and "Empty" state
+        if (targetAnim == Locomotion_STATE)
         {
             anim.SetBool("isGrounded", true);
         }
-        if(targetAnim == Falling_STATE)
+        if (targetAnim == Falling_STATE)
         {
             anim.SetBool("isGrounded", false);
         }
-# endregion
+        #endregion
     }
 
     public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting)
     {
         #region Vertical
-        float v= 0;
-        if(verticalMovement > 0 && verticalMovement < 0.55f)
+        float v = 0;
+        if (verticalMovement > 0 && verticalMovement < 0.55f)
         {
             v = 0.5f;
         }
@@ -68,15 +68,15 @@ public class AnimatorHandler : MonoBehaviour
         {
             v = -1;
         }
-        else  
+        else
         {
             v = 0;
         }
         #endregion
 
         #region Horizontal
-        float h= 0;
-        if(horizontalMovement > 0 && horizontalMovement < 0.55f)
+        float h = 0;
+        if (horizontalMovement > 0 && horizontalMovement < 0.55f)
         {
             h = 0.5f;
         }
@@ -92,13 +92,13 @@ public class AnimatorHandler : MonoBehaviour
         {
             h = -1;
         }
-        else  
+        else
         {
             h = 0;
         }
         #endregion
 
-        if(isSprinting)
+        if (isSprinting)
         {
             v = 2;
             h = horizontalMovement;
@@ -117,6 +117,16 @@ public class AnimatorHandler : MonoBehaviour
         canRotate = false;
     }
 
+    public void DisableCombo()
+    {
+        anim.SetBool("canDoCombo", false);
+    }
+
+    public void EnableCombo()
+    {
+        anim.SetBool("canDoCombo", true);
+    }
+
     public bool CheckCurrentAnimationState(string name)
     {
         return anim.GetCurrentAnimatorStateInfo(0).IsName(name);
@@ -124,7 +134,7 @@ public class AnimatorHandler : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        if(playerManager.isInteracting == false)
+        if (playerManager.isInteracting == false)
             return;
 
         float delta = Time.deltaTime;

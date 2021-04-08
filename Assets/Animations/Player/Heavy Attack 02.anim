@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Heavy Attack
+  m_Name: Heavy Attack 02
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -117492,6 +117492,20 @@ AnimationClip:
     messageOptions: 0
   - time: 3.0333333
     functionName: CloseRightDamageCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.2
+    functionName: EnableCombo
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.233333
+    functionName: DisableCombo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
