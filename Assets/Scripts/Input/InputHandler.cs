@@ -10,12 +10,18 @@ public class InputHandler : MonoBehaviour
     public float moveAmount;
     public float mouseX;
     public float mouseY;
+    #region Controller Input flat
     // B button (east button on gamepad) is pressed 
     public bool b_Input;
     // RB button (R1)
     public bool rb_Input;
     // RT button (R2)
     public bool rt_Input;
+    public bool d_Pad_Up;
+    public bool d_Pad_Down;
+    public bool d_Pad_Left;
+    public bool d_Pad_Right;
+    #endregion
     public bool sprintFlag;
     public bool comboFlag;
     public bool rollFlag;
@@ -55,6 +61,7 @@ public class InputHandler : MonoBehaviour
         MoveInput(delta);
         HandleRollInput(delta);
         HandleAttackInput(delta);
+        HandleQuickSlotsInput();
     }
 
     private void MoveInput(float delta)
@@ -113,6 +120,21 @@ public class InputHandler : MonoBehaviour
                 comboFlag = false;
             }
             playerAttacker.HandleHeavyAttact(playerInventory.rightWeapon);
+        }
+    }
+
+    private void HandleQuickSlotsInput()
+    {
+        inputActions.PlayerQuickSlots.DPadRight.performed += i => d_Pad_Right = true;
+        inputActions.PlayerQuickSlots.DPadLeft.performed += i => d_Pad_Left = true;
+
+        if (d_Pad_Right)
+        {
+            playerInventory.ChangeRightHandWeapon();            
+        }
+        else if (d_Pad_Left)
+        {
+            playerInventory.ChangeLeftHandWeapon();  
         }
     }
 }
