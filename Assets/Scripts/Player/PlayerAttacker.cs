@@ -6,12 +6,14 @@ public class PlayerAttacker : MonoBehaviour
 {
     AnimatorHandler animatorHandler;
     InputHandler inputHandler;
+    WeaponSlotManager weaponSlotManager;
     public string lastAttack;
 
     void Awake()
     {
         animatorHandler = GetComponentInChildren<AnimatorHandler>();
         inputHandler = GetComponentInChildren<InputHandler>();
+        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
     }
 
     public void HandleWeaponCombo(WeaponItem weapon)
@@ -32,12 +34,14 @@ public class PlayerAttacker : MonoBehaviour
     }
     public void HandleLightAttact(WeaponItem weapon)
     {
+        weaponSlotManager.attackingWeapon = weapon;
         animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_01, true);
         lastAttack = weapon.OH_Light_Attack_01;
     }
 
     public void HandleHeavyAttact(WeaponItem weapon)
     {
+        weaponSlotManager.attackingWeapon = weapon;
         animatorHandler.PlayTargetAnimation(weapon.OH_Heavy_Attack_01, true);
         lastAttack = weapon.OH_Heavy_Attack_01;
     }

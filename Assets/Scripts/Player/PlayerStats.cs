@@ -8,6 +8,9 @@ public class PlayerStats : MonoBehaviour
     public int healthLevel = 10;
     public int maxHealth;
     public int currentHealth;
+    public int staminaLevel;
+    public int maxStamina;
+    public int currentStamina;
     AnimatorHandler animatorHandler;
     void Awake()
     {
@@ -18,13 +21,23 @@ public class PlayerStats : MonoBehaviour
         maxHealth = SetMaxHealthFromHealthLevel();
         currentHealth = maxHealth;
 
+        maxStamina = SetMaxStaminaFromStaminaLevel();
+        currentStamina = maxStamina;
+
         HealthBar.Instance.SetMaxHealth(maxHealth);
+        StaminaBar.Instance.SetMaxStamina(maxStamina);
     }
 
     private int SetMaxHealthFromHealthLevel()
     {
         maxHealth = healthLevel * 10;
         return maxHealth;
+    }
+
+    private int SetMaxStaminaFromStaminaLevel()
+    {
+        maxStamina = staminaLevel * 10;
+        return maxStamina;
     }
 
     public void TakeDamage(int damage)
@@ -41,5 +54,11 @@ public class PlayerStats : MonoBehaviour
 
             // YOU DIED
         }
+    }
+
+    public void TakeStaminaDamage(int damage)
+    {
+        currentStamina = currentStamina - damage;
+        StaminaBar.Instance.SetCurrentStamina(currentStamina);
     }
 }
