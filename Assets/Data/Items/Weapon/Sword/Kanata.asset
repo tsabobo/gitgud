@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa38d40b41c3bd443be203423cecc480, type: 3}
   m_Name: Kanata
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: b74dade160e5dd14f828a432103bf6ff, type: 3}
+  itemIcon: {fileID: 21300000, guid: 401ef99c23b661345b8b1b7030003beb, type: 3}
   itemName: Katana
   modelPrefab: {fileID: 1714290838454847048, guid: e002983b8899963489e94c6173a58da5,
     type: 3}

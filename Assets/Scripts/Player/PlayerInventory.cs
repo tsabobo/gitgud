@@ -32,7 +32,7 @@ public class PlayerInventory : MonoBehaviour
         if (currentLeftWeaponIndex == 0 && weaponsInLeftHandSlots[0] != null)
         {
             leftWeapon = weaponsInLeftHandSlots[currentLeftWeaponIndex];
-            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
+            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, Flags.IS_LEFT);
         }
         else if (currentLeftWeaponIndex == 0 && weaponsInLeftHandSlots[0] == null)
         {
@@ -42,7 +42,7 @@ public class PlayerInventory : MonoBehaviour
         else if (currentLeftWeaponIndex == 1 && weaponsInLeftHandSlots[1] != null)
         {
             leftWeapon = weaponsInLeftHandSlots[currentLeftWeaponIndex];
-            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
+            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, Flags.IS_LEFT);
         }
         else
         {
@@ -53,7 +53,7 @@ public class PlayerInventory : MonoBehaviour
         {
             currentLeftWeaponIndex = -1;
             leftWeapon = unarmedWeapon;
-            weaponSlotManager.LoadWeaponOnSlot(unarmedWeapon, true);
+            weaponSlotManager.LoadWeaponOnSlot(unarmedWeapon, Flags.IS_LEFT);
         }
     }
     public void ChangeRightHandWeapon()
@@ -63,7 +63,7 @@ public class PlayerInventory : MonoBehaviour
         if (currentRightWeaponIndex == 0 && weaponsInRightHandSlots[0] != null)
         {
             rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
-            weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
+            weaponSlotManager.LoadWeaponOnSlot(rightWeapon, Flags.IS_RIGHT);
         }
         else if (currentRightWeaponIndex == 0 && weaponsInRightHandSlots[0] == null)
         {
@@ -73,7 +73,7 @@ public class PlayerInventory : MonoBehaviour
         else if (currentRightWeaponIndex == 1 && weaponsInRightHandSlots[1] != null)
         {
             rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
-            weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
+            weaponSlotManager.LoadWeaponOnSlot(rightWeapon, Flags.IS_RIGHT);
         }
         else
         {
@@ -84,7 +84,7 @@ public class PlayerInventory : MonoBehaviour
         {
             currentRightWeaponIndex = -1;
             rightWeapon = unarmedWeapon;
-            weaponSlotManager.LoadWeaponOnSlot(unarmedWeapon, false);
+            weaponSlotManager.LoadWeaponOnSlot(unarmedWeapon, Flags.IS_RIGHT);
         }
     }
 
