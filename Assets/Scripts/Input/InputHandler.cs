@@ -11,8 +11,13 @@ public class InputHandler : MonoBehaviour
     public float mouseX;
     public float mouseY;
     #region Controller Input flat
+    // XBOX controller:  Y
+    //                 X   B
+    //                   A  
     // B button (east button on gamepad) is pressed 
     public bool b_Input;
+    // A button (south button on gamepad) is pressed 
+    public bool a_Input;
     // RB button (R1)
     public bool rb_Input;
     // RT button (R2)
@@ -62,6 +67,7 @@ public class InputHandler : MonoBehaviour
         HandleRollInput(delta);
         HandleAttackInput(delta);
         HandleQuickSlotsInput();
+        HandleInteractingButtonInput();
     }
 
     private void MoveInput(float delta)
@@ -136,5 +142,10 @@ public class InputHandler : MonoBehaviour
         {
             playerInventory.ChangeLeftHandWeapon();  
         }
+    }
+
+    private void HandleInteractingButtonInput()
+    {
+        inputActions.PlayerAction.A.performed += i => a_Input = true;
     }
 }

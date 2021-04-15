@@ -10,7 +10,7 @@ public class CameraHandler : Singleton<CameraHandler>
     private Transform myTransform;
     private Vector3 cameraTransformPosition;
     private Vector3 cameraFollowVelocity = Vector3.zero;
-    private LayerMask ignoreLayers;
+    public LayerMask ignoreLayers;
     public static CameraHandler singleton;
     public float lookSpeed = 0.1f;
     public float followSpeed = 0.1f;

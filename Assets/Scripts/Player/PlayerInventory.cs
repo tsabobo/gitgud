@@ -11,6 +11,7 @@ public class PlayerInventory : MonoBehaviour
 
     public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[2];
     public WeaponItem[] weaponsInLeftHandSlots = new WeaponItem[2];
+    public List<WeaponItem> weaponInventory;
 
     public int currentRightWeaponIndex = -1;
     public int currentLeftWeaponIndex = -1;
