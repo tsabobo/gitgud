@@ -19,6 +19,7 @@ public class AnimatorHandler : MonoBehaviour
     public static string Damage_STATE = "Damage_01";
     public static string Death_STATE = "Death";
     public static string Pick_Up_Item_STATE = "Pick Up Item";
+    public static string Jump_STATE = "Jump";
     public bool canRotate;
     public void Initialize()
     {
