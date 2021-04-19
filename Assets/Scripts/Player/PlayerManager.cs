@@ -8,7 +8,9 @@ public class PlayerManager : MonoBehaviour
     Animator anim;
     CameraHandler cameraHandler;
     PlayerLocomotion playerLocomotion;
-
+    public InteractableUI interactableUI;
+    public GameObject interactableUIObject;
+    public GameObject itemInteractableObject;
 
     [Header("Player Flags")]
     public bool isSprinting;
@@ -26,6 +28,9 @@ public class PlayerManager : MonoBehaviour
         inputHandler = GetComponent<InputHandler>();
         anim = GetComponentInChildren<Animator>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
+        interactableUI = FindObjectOfType<InteractableUI>();
+        interactableUIObject.SetActive(false);
+        itemInteractableObject.SetActive(false);
     }
 
     void Update()
@@ -80,21 +85,19 @@ public class PlayerManager : MonoBehaviour
         if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers))
         {
             Debug.DrawRay(transform.position, transform.forward * 0.3f, Color.red, 0.1f);
-            print("hit ");
+
             if (hit.collider.tag == "Interactable")
             {
-                print("interactable ");
                 Interactable interactableObj = hit.collider.GetComponent<Interactable>();
 
                 if (interactableObj != null)
                 {
                     string interactableText = interactableObj.interactableText;
-                    // set ui text
+                    interactableUI.interactableText.text = interactableText;
+                    interactableUIObject.SetActive(true);
 
                     if (inputHandler.a_Input)
                     {
-
-                        print("input F");
                         hit.collider.GetComponent<Interactable>().Interact(this);
 
                     }
@@ -103,7 +106,12 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.forward * 0.3f, Color.green, 0.1f);
+            interactableUIObject.SetActive(false);
+
+            if(inputHandler.a_Input)
+            {
+                itemInteractableObject.SetActive(false);
+            }
         }
     }
 }

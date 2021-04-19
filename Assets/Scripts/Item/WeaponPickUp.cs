@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class WeaponPickUp : Interactable
 {
@@ -27,7 +29,9 @@ public class WeaponPickUp : Interactable
         animatorHandler.PlayTargetAnimation(AnimatorHandler.Pick_Up_Item_STATE, true);
 
         inventory.weaponInventory.Add(weapon);
-
+        playerManager.interactableUI.itemText.text = weapon.itemName;
+        playerManager.interactableUI.itemIcon.sprite = weapon.itemIcon;
+        playerManager.itemInteractableObject.SetActive(true);
         Destroy(gameObject);
     }
 }
