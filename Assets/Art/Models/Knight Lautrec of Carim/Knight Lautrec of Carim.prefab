@@ -138,12 +138,14 @@ MonoBehaviour:
   rb_Input: 0
   rt_Input: 0
   jump_Input: 0
+  inventory_Input: 0
   d_Pad_Up: 0
   d_Pad_Down: 0
   d_Pad_Left: 0
   d_Pad_Right: 0
   sprintFlag: 0
   comboFlag: 0
+  inventoryFlag: 0
   rollFlag: 0
   rollInputTimer: 0
 --- !u!114 &1404098941860219134

@@ -23,6 +23,7 @@ public class InputHandler : MonoBehaviour
     // RT button (R2)
     public bool rt_Input;
     public bool jump_Input;
+    public bool inventory_Input;
     public bool d_Pad_Up;
     public bool d_Pad_Down;
     public bool d_Pad_Left;
@@ -30,6 +31,7 @@ public class InputHandler : MonoBehaviour
     #endregion
     public bool sprintFlag;
     public bool comboFlag;
+    public bool inventoryFlag;
     public bool rollFlag;
     public float rollInputTimer;
     PlayerControls inputActions;
@@ -70,6 +72,7 @@ public class InputHandler : MonoBehaviour
         HandleQuickSlotsInput();
         HandleInteractingButtonInput();
         HandleJumpInput();
+        HandleInventoryInput();
     }
 
     private void MoveInput(float delta)
@@ -154,5 +157,15 @@ public class InputHandler : MonoBehaviour
     private void HandleJumpInput()
     {
         inputActions.PlayerAction.Jump.performed += i => jump_Input = true;
+    }
+
+    private void HandleInventoryInput()
+    {
+        inputActions.PlayerAction.Inventory.performed += i => inventory_Input = true;
+        if(inventory_Input)
+        {
+            inventoryFlag =! inventoryFlag;
+            UIManager.Instance.OpenSelectWindow(inventoryFlag);            
+        }
     }
 }
