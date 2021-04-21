@@ -969,6 +969,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 982163361}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &577394718
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,6 +992,7 @@ GameObject:
   - component: {fileID: 577394721}
   - component: {fileID: 577394720}
   - component: {fileID: 577394719}
+  - component: {fileID: 577394723}
   m_Layer: 5
   m_Name: UI Canvas
   m_TagString: Untagged
@@ -1069,6 +1081,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &577394723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577394718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff691f8e58e2874c88c5a42171dea78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInventory: {fileID: 1404098941722213318}
+  hudWindow: {fileID: 1544793380}
+  selectWindow: {fileID: 1525279294}
+  weaponInventoryWindow: {fileID: 982163361}
+  weaponInventorySlotPrefab: {fileID: 2037895054}
+  weaponInventorySlotsParent: {fileID: 909583675}
 --- !u!1 &662998855
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,7 +2162,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 970927316}
-  - component: {fileID: 970927317}
   m_Layer: 5
   m_Name: UI Windows
   m_TagString: Untagged
@@ -2161,19 +2190,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &970927317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970927315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ff691f8e58e2874c88c5a42171dea78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectWindow: {fileID: 1525279294}
 --- !u!1 &982163361
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,12 +2200,12 @@ GameObject:
   m_Component:
   - component: {fileID: 982163362}
   m_Layer: 5
-  m_Name: Inventory Window
+  m_Name: Weapon Inventory Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &982163362
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3105,7 +3121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1544793381}
   m_Layer: 5
-  m_Name: HUD
+  m_Name: HUD Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3727,6 +3743,7 @@ GameObject:
   - component: {fileID: 2037895056}
   - component: {fileID: 2037895058}
   - component: {fileID: 2037895057}
+  - component: {fileID: 2037895059}
   m_Layer: 5
   m_Name: Weapon Inventory Slot
   m_TagString: Untagged
@@ -3803,7 +3820,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2037895054}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -3833,6 +3850,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2037895054}
   m_CullTransparentMesh: 0
+--- !u!114 &2037895059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037895054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8241248d2efcdf245a82cb8a714011bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2037895057}
 --- !u!1 &2113161605
 GameObject:
   m_ObjectHideFlags: 0
@@ -4044,6 +4074,18 @@ PrefabInstance:
       objectReference: {fileID: 160188081}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 203b8ed29b91d8d429e8ffa58f17bc06, type: 3}
+--- !u!114 &1404098941722213318 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1404098941722213324, guid: 203b8ed29b91d8d429e8ffa58f17bc06,
+    type: 3}
+  m_PrefabInstance: {fileID: 1404098941722213317}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0b7a2be0782144981e33d4b6cec722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2606249251445465099
 PrefabInstance:
   m_ObjectHideFlags: 0

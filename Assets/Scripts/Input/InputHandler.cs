@@ -141,11 +141,11 @@ public class InputHandler : MonoBehaviour
 
         if (d_Pad_Right)
         {
-            playerInventory.ChangeRightHandWeapon();            
+            playerInventory.ChangeRightHandWeapon();
         }
         else if (d_Pad_Left)
         {
-            playerInventory.ChangeLeftHandWeapon();  
+            playerInventory.ChangeLeftHandWeapon();
         }
     }
 
@@ -162,10 +162,23 @@ public class InputHandler : MonoBehaviour
     private void HandleInventoryInput()
     {
         inputActions.PlayerAction.Inventory.performed += i => inventory_Input = true;
-        if(inventory_Input)
+        if (inventory_Input)
         {
-            inventoryFlag =! inventoryFlag;
-            UIManager.Instance.OpenSelectWindow(inventoryFlag);            
+            inventoryFlag = !inventoryFlag;
+
+            if (inventoryFlag)
+            {
+                UIManager.Instance.OpenSelectWindow();
+                UIManager.Instance.UpdateUI();
+                // Close HUD when inventory window is opened and vice versa
+                UIManager.Instance.hudWindow.SetActive(false);
+            }
+            else
+            {
+                UIManager.Instance.CloseSelectWindow();
+                UIManager.Instance.CloseAllInventoryWindows();
+                UIManager.Instance.hudWindow.SetActive(true);
+            }
         }
     }
 }
