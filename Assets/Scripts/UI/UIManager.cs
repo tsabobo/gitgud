@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
     public PlayerInventory playerInventory;
+    public EquipmentWindowUI equipmentWindowUI;
     [Header("UI Windows")]
     public GameObject hudWindow;
     public GameObject selectWindow;
@@ -18,6 +19,7 @@ public class UIManager : Singleton<UIManager>
     public void Start()
     {
         weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
+        equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerInventory);
     }
 
     public void UpdateUI()

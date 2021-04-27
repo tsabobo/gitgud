@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa38d40b41c3bd443be203423cecc480, type: 3}
   m_Name: Unarmed
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 284fd400ac273c7429b98c0f2e463536, type: 3}
   itemName: 
   modelPrefab: {fileID: 751873225918539885, guid: f189ce95d335d334bbc8a108f60221d0,
     type: 3}
