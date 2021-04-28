@@ -41,12 +41,10 @@ public class PlayerManager : MonoBehaviour
         isInteracting = anim.GetBool("isInteracting");
         canDoCombo = anim.GetBool("canDoCombo");
         anim.SetBool("isInAir", isInAir);
-        
         inputHandler.TickInput(delta);
-        playerLocomotion.HandleMovement(delta);
+        //Trigger animations
         playerLocomotion.HandleRollingAndSrinting(delta);
-        playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
-        playerLocomotion.HandleJumping();
+        playerLocomotion.HandleJumping();       
 
         CheckForInteractable();
     }
@@ -54,18 +52,15 @@ public class PlayerManager : MonoBehaviour
     void FixedUpdate()
     {
         float delta = Time.fixedDeltaTime;
-        if (cameraHandler != null)
-        {
-            cameraHandler.FollowTarget(delta);
-            cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
-        }
+        // Movements
+        playerLocomotion.HandleMovement(delta);
+        playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
     }
 
     // Reset flags
     void LateUpdate()
     {
         inputHandler.rollFlag = false;
-        inputHandler.sprintFlag = false;
         inputHandler.rb_Input = false;
         inputHandler.rt_Input = false;
         inputHandler.a_Input = false;
@@ -76,6 +71,14 @@ public class PlayerManager : MonoBehaviour
         inputHandler.d_Pad_Down = false;
         inputHandler.inventory_Input = false;
 
+        // Camera movements
+        float delta = Time.deltaTime;
+        if (cameraHandler != null)
+        {
+            cameraHandler.FollowTarget(delta);
+            cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+        }
+
         if (isInAir)
         {
             playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
@@ -85,7 +88,7 @@ public class PlayerManager : MonoBehaviour
     public void CheckForInteractable()
     {
         RaycastHit hit;
-        
+
         if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers))
         {
             Debug.DrawRay(transform.position, transform.forward * 0.3f, Color.red, 0.1f);
@@ -112,7 +115,7 @@ public class PlayerManager : MonoBehaviour
         {
             interactableUIObject.SetActive(false);
 
-            if(inputHandler.a_Input)
+            if (inputHandler.a_Input)
             {
                 itemInteractableObject.SetActive(false);
             }

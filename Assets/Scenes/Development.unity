@@ -488,6 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1768327121}
+  weapon: {fileID: 0}
   rightHandSlot01: 0
   rightHandSlot02: 1
   rightHandSlot03: 0
@@ -947,6 +948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1488582032}
+  weapon: {fileID: 0}
   rightHandSlot01: 0
   rightHandSlot02: 0
   rightHandSlot03: 0
@@ -1902,6 +1904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 2118330784}
+  weapon: {fileID: 0}
   rightHandSlot01: 0
   rightHandSlot02: 0
   rightHandSlot03: 0
@@ -2941,6 +2944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 190963001}
+  weapon: {fileID: 0}
   rightHandSlot01: 1
   rightHandSlot02: 0
   rightHandSlot03: 0
@@ -4730,6 +4734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 42960299}
+  weapon: {fileID: 0}
   rightHandSlot01: 0
   rightHandSlot02: 0
   rightHandSlot03: 0
@@ -5682,6 +5687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1781814388}
+  weapon: {fileID: 0}
   rightHandSlot01: 0
   rightHandSlot02: 0
   rightHandSlot03: 1
@@ -6018,7 +6024,7 @@ MonoBehaviour:
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 0
-  lookSpeed: 0.1
+  lookSpeed: 0.01
   followSpeed: 0.1
   pivotSpeed: 0.1
   minimumPivot: -35
@@ -6087,6 +6093,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404098941860219134, guid: 203b8ed29b91d8d429e8ffa58f17bc06,
+        type: 3}
+      propertyPath: fallingingSpeed
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1404098941860219135, guid: 203b8ed29b91d8d429e8ffa58f17bc06,
         type: 3}
