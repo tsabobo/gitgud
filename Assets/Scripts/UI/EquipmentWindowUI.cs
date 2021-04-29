@@ -16,6 +16,7 @@ public class EquipmentWindowUI : MonoBehaviour
     private void Awake()
     {
         handEquipmentSlotUIs = GetComponentsInChildren<HandEquipmentSlotUI>();
+        gameObject.SetActive(false);
     }
 
     public void LoadWeaponsOnEquipmentScreen(PlayerInventory inventory)

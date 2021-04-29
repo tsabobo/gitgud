@@ -25,6 +25,8 @@ public class InputHandler : Singleton<InputHandler>
     public bool jump_Input;
     public bool inventory_Input;
     public bool lockOn_Input;
+    public bool rightStick_Right_Input;
+    public bool rightStick_Left_Input;
     public bool d_Pad_Up;
     public bool d_Pad_Down;
     public bool d_Pad_Left;
@@ -58,6 +60,8 @@ public class InputHandler : Singleton<InputHandler>
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
             inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+            inputActions.PlayerMovement.LockOnTargetLeft.performed += i => rightStick_Left_Input = true;
+            inputActions.PlayerMovement.LockOnTargetRight.performed += i => rightStick_Right_Input = true;
 
             inputActions.PlayerAction.RB.performed += i => rb_Input = true;
             inputActions.PlayerAction.RT.performed += i => rt_Input = true;
@@ -181,11 +185,9 @@ public class InputHandler : Singleton<InputHandler>
     public void HandleLockOnInput()
     {
         if (lockOn_Input && lockOnFlag == false)
-        {
-            CameraHandler.Instance.ClearLockOnTargets();
+        { 
             lockOn_Input = false;
             CameraHandler.Instance.HanldeLockOn();
-
             if (CameraHandler.Instance.nearestLockOnTarget != null)
             {
                 CameraHandler.Instance.currentLockOnTarget = CameraHandler.Instance.nearestLockOnTarget;
@@ -199,6 +201,30 @@ public class InputHandler : Singleton<InputHandler>
 
             CameraHandler.Instance.ClearLockOnTargets();
         }
+
+        // If right stick pushed to left and we are currently locking
+        if(lockOnFlag && rightStick_Left_Input)
+        {
+            rightStick_Left_Input = false;
+            CameraHandler.Instance.HanldeLockOn();
+            // Set lock on target on the left if exists
+            if(CameraHandler.Instance.leftLockOnTarget != null)
+            {
+                CameraHandler.Instance.currentLockOnTarget = CameraHandler.Instance.leftLockOnTarget;
+            }
+        }
+        
+        if(lockOnFlag && rightStick_Right_Input)
+        {
+            rightStick_Right_Input = false;
+            CameraHandler.Instance.HanldeLockOn();
+            if(CameraHandler.Instance.rightLockOnTarget != null)
+            {
+                CameraHandler.Instance.currentLockOnTarget = CameraHandler.Instance.rightLockOnTarget;
+            }
+        }
+
+
     }
 
 

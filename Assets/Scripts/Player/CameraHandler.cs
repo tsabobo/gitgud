@@ -28,6 +28,8 @@ public class CameraHandler : Singleton<CameraHandler>
     List<CharacterManager> availableTargets = new List<CharacterManager>();
     public Transform currentLockOnTarget;
     public Transform nearestLockOnTarget;
+    public Transform leftLockOnTarget;
+    public Transform rightLockOnTarget;
     private void Awake()
     {
         //singleton = this;
@@ -118,6 +120,8 @@ public class CameraHandler : Singleton<CameraHandler>
     public void HanldeLockOn()
     {
         float shortestDistance = Mathf.Infinity;
+        float shortestDistanceOfLeftTarget = Mathf.Infinity;
+        float shortestDistanceOfRightTarget = Mathf.Infinity;
 
         Collider[] colliders = Physics.OverlapSphere(targetTransform.position, 26);
 
@@ -146,7 +150,24 @@ public class CameraHandler : Singleton<CameraHandler>
                 shortestDistance = distanceFromTarget;
                 nearestLockOnTarget = availableTargets[i].lockOnTransform;
             }
+            if(InputHandler.Instance.lockOnFlag)
+            {
+                Vector3 relativeEnemyPosition = currentLockOnTarget.InverseTransformPoint(availableTargets[i].transform.position);
+                var distanceFromLeftTarget = currentLockOnTarget.position.x - availableTargets[i].transform.position.x;
+                var distanceFromRightTarget = currentLockOnTarget.position.x + availableTargets[i].transform.position.x;
 
+                if(relativeEnemyPosition.x > 0 && distanceFromLeftTarget < shortestDistanceOfLeftTarget)
+                {
+                    shortestDistanceOfLeftTarget = distanceFromLeftTarget;
+                    leftLockOnTarget = availableTargets[i].lockOnTransform;
+                }
+
+                if(relativeEnemyPosition.x < 0 && distanceFromRightTarget < shortestDistanceOfRightTarget)
+                {
+                    shortestDistanceOfRightTarget = distanceFromRightTarget;
+                    rightLockOnTarget = availableTargets[i].lockOnTransform;
+                }
+            }
         }
     }
 
