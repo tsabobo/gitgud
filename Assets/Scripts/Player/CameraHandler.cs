@@ -11,6 +11,7 @@ public class CameraHandler : Singleton<CameraHandler>
     private Vector3 cameraTransformPosition;
     private Vector3 cameraFollowVelocity = Vector3.zero;
     public LayerMask ignoreLayers;
+    public LayerMask environmentLayer;
     public static CameraHandler singleton;
     public float lookSpeed = 0.1f;
     public float followSpeed = 0.1f;
@@ -24,7 +25,10 @@ public class CameraHandler : Singleton<CameraHandler>
     public float cameraSphereRadius = 0.2f;
     public float cameraCollisionOffset = 0.2f;
     public float minimumCollisionOffset = 0.2f;
+    public float lockedPivotPosition = 2.25f;
+    public float unlockedPivotPosition = 1.65f;
     public float maxLockOnDistance = 30f;
+    public PlayerManager playerManager;
     List<CharacterManager> availableTargets = new List<CharacterManager>();
     public Transform currentLockOnTarget;
     public Transform nearestLockOnTarget;
@@ -36,6 +40,7 @@ public class CameraHandler : Singleton<CameraHandler>
         myTransform = transform;
         defaultPosition = cameraTransform.localPosition.z;
         ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
+        environmentLayer = LayerMask.NameToLayer("Environment");
 
         // Force find player target to fix camera not following bug
         targetTransform = FindObjectOfType<PlayerManager>().transform;
@@ -133,10 +138,24 @@ public class CameraHandler : Singleton<CameraHandler>
                 Vector3 lockTargetDirection = character.transform.position - targetTransform.position;
                 float distanceFromTarget = Vector3.Distance(targetTransform.position, character.transform.position);
                 float viewableAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward);
+                RaycastHit hit;
 
-                if (character.transform.root != targetTransform.root && viewableAngle > -50 && viewableAngle < 50
+                if (character.transform.root != targetTransform.root 
+                    && viewableAngle > -50 && viewableAngle < 50
                     && distanceFromTarget <= maxLockOnDistance)
                 {
+                    if (Physics.Linecast(playerManager.lockOnTransform.position,character.lockOnTransform.position, out hit ))
+                    {
+                        Debug.DrawLine(playerManager.lockOnTransform.position,character.lockOnTransform.position);
+                        if (hit.transform.gameObject.layer == environmentLayer)
+                        {
+                            // Cannot lock onto target, object in the way
+                        }
+                        else
+                        {
+
+                        }
+                    }
                     availableTargets.Add(character);
                 }
             }
@@ -177,5 +196,24 @@ public class CameraHandler : Singleton<CameraHandler>
 
         currentLockOnTarget = null;
         nearestLockOnTarget = null;
+    }
+
+    public void SetCameraHeight()
+    {
+        Vector3 velocity = Vector3.zero;
+        Vector3 newLockedPosition = new Vector3(0, lockedPivotPosition);
+        Vector3 newUnLockedPosition = new Vector3(0, unlockedPivotPosition);
+        
+        // Locked on
+        if(currentLockOnTarget != null)
+        {
+            // Smooth damp to locked height positoin
+            cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newLockedPosition, ref velocity, Time.deltaTime);
+        }
+        else
+        {
+            cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newUnLockedPosition, ref velocity, Time.deltaTime);
+        }
+
     }
 }

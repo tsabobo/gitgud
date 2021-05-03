@@ -62,23 +62,60 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void HandleRotation(float delta)
     {
-        Vector3 targetDir = Vector3.zero;
-        float moveOverride = inputHandler.moveAmount;
+        if (inputHandler.lockOnFlag)
+        {
+            // Face sprint direction
+            if (inputHandler.sprintFlag || inputHandler.rollFlag)
+            {
+                Vector3 targetDirection = Vector3.zero;
+                targetDirection = CameraHandler.Instance.cameraTransform.forward * inputHandler.vertical;
+                targetDirection += CameraHandler.Instance.cameraTransform.right * inputHandler.horizontal;
 
-        targetDir = cameraObject.forward * inputHandler.vertical;
-        targetDir += cameraObject.right * inputHandler.horizontal;
+                targetDirection.y = 0;
+                if (targetDirection == Vector3.zero)
+                {
+                    targetDirection = transform.forward;
+                }
 
-        targetDir.Normalize();
-        targetDir.y = 0;
+                Quaternion tr = Quaternion.LookRotation(targetDirection);
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
 
-        if (targetDir == Vector3.zero)
-            targetDir = myTransform.forward;
+                transform.rotation = targetRotation;
+            }
+            else
+            // Not locking anyting
+            {
+                // Face camera direction
+                Vector3 rotationDirection = moveDirection;
+                rotationDirection = CameraHandler.Instance.currentLockOnTarget.position - transform.position;
+                rotationDirection.y = 0;
+                rotationDirection.Normalize();
+                Quaternion tr = Quaternion.LookRotation(rotationDirection);
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
 
-        float rs = rotationSpeed;
+                transform.rotation = targetRotation;
+            }
+        }
+        else
+        {
+            Vector3 targetDir = Vector3.zero;
+            float moveOverride = inputHandler.moveAmount;
 
-        Quaternion tr = Quaternion.LookRotation(targetDir);
-        Quaternion targetRotation = Quaternion.Slerp(myTransform.rotation, tr, rs * delta);
-        myTransform.rotation = targetRotation;
+            targetDir = cameraObject.forward * inputHandler.vertical;
+            targetDir += cameraObject.right * inputHandler.horizontal;
+
+            targetDir.Normalize();
+            targetDir.y = 0;
+
+            if (targetDir == Vector3.zero)
+                targetDir = myTransform.forward;
+
+            float rs = rotationSpeed;
+
+            Quaternion tr = Quaternion.LookRotation(targetDir);
+            Quaternion targetRotation = Quaternion.Slerp(myTransform.rotation, tr, rs * delta);
+            myTransform.rotation = targetRotation;
+        }
     }
 
     public void HandleMovement(float delta)
@@ -114,19 +151,28 @@ public class PlayerLocomotion : MonoBehaviour
             if (inputHandler.moveAmount < 0.5f)
             {
                 moveDirection *= walkingSpeed;
-                 playerManager.isSprinting = false;
+                playerManager.isSprinting = false;
             }
             else
             {
                 moveDirection *= speed;
-                 playerManager.isSprinting = false;
-            }            
+                playerManager.isSprinting = false;
+            }
         }
 
 
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         rigidbody.velocity = projectedVelocity;
-        animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
+        if (inputHandler.lockOnFlag && inputHandler.sprintFlag == false)
+        {
+            animatorHandler.UpdateAnimatorValues(inputHandler.vertical, inputHandler.horizontal, playerManager.isSprinting);
+        }
+        else
+        {
+            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
+
+        }
+
         if (animatorHandler.canRotate)
         {
             HandleRotation(delta);
@@ -193,7 +239,7 @@ public class PlayerLocomotion : MonoBehaviour
 
             // Landing Animation
             if (playerManager.isInAir)
-            {                
+            {
                 if (inAirTimer > 0.5f)
                 {
                     animatorHandler.PlayTargetAnimation(AnimatorHandler.Land_STATE, true);
@@ -203,7 +249,7 @@ public class PlayerLocomotion : MonoBehaviour
                 {
                     // Player falls very shortly, not need to play landing animation
                     animatorHandler.PlayTargetAnimation(AnimatorHandler.Empty_STATE, false);
-                     inAirTimer = 0;
+                    inAirTimer = 0;
                 }
 
                 playerManager.isInAir = false;
@@ -230,7 +276,7 @@ public class PlayerLocomotion : MonoBehaviour
                 rigidbody.velocity = velocity * (runningSpeed / 2);
                 playerManager.isInAir = true;
             }
-            
+
             // TODO: fix bug that player get stuck at egde on stairs
             #region  dirty fix
             else
@@ -245,11 +291,11 @@ public class PlayerLocomotion : MonoBehaviour
                     animatorHandler.PlayTargetAnimation(AnimatorHandler.Falling_STATE, false);
                     inAirTimer = 0;
                 }
-                
+
             }
             #endregion;  
         }
-        if(playerManager.isInteracting || inputHandler.moveAmount > 0)
+        if (playerManager.isInteracting || inputHandler.moveAmount > 0)
         {
             myTransform.position = Vector3.Lerp(myTransform.position, targetPosition, Time.deltaTime / 0.1f);
         }
@@ -272,12 +318,12 @@ public class PlayerLocomotion : MonoBehaviour
     }
     public void HandleJumping()
     {
-        if(playerManager.isInteracting)
+        if (playerManager.isInteracting)
             return;
-        
-        if(inputHandler.jump_Input)
+
+        if (inputHandler.jump_Input)
         {
-            if(inputHandler.moveAmount > 0)
+            if (inputHandler.moveAmount > 0)
             {
                 moveDirection = cameraObject.forward * inputHandler.vertical;
                 moveDirection += cameraObject.right * inputHandler.horizontal;
