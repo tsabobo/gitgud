@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInventory : MonoBehaviour
+public class PlayerInventory : Singleton<PlayerInventory>
 {
     WeaponSlotManager weaponSlotManager;
     public WeaponItem rightWeapon;
@@ -23,8 +23,11 @@ public class PlayerInventory : MonoBehaviour
 
     void Start()
     {
-        rightWeapon = unarmedWeapon;
-        leftWeapon = unarmedWeapon;
+        rightWeapon = weaponsInRightHandSlots[0];
+        leftWeapon = weaponsInLeftHandSlots[0];
+
+        weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
+        weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
     }
     public void ChangeLeftHandWeapon()
     { 

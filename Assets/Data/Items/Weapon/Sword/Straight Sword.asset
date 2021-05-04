@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa38d40b41c3bd443be203423cecc480, type: 3}
   m_Name: Straight Sword
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: b74dade160e5dd14f828a432103bf6ff, type: 3}
+  itemIcon: {fileID: 21300000, guid: ab6b0078dcbe6284e94754089ca3fee3, type: 3}
   itemName: Straig Sword
   modelPrefab: {fileID: 1714290838454847048, guid: 4025d07fc4bd02e41a0a4fdaa9714e57,
     type: 3}

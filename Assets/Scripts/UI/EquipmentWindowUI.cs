@@ -11,11 +11,10 @@ public class EquipmentWindowUI : MonoBehaviour
     public bool leftHandSlot02Selected;
     public bool leftHandSlot03Selected;
 
-    HandEquipmentSlotUI[] handEquipmentSlotUIs;
+    public HandEquipmentSlotUI[] handEquipmentSlotUIs;
 
     private void Awake()
     {
-        handEquipmentSlotUIs = GetComponentsInChildren<HandEquipmentSlotUI>();
         gameObject.SetActive(false);
     }
 
@@ -23,28 +22,29 @@ public class EquipmentWindowUI : MonoBehaviour
     {
         for (int i = 0; i < handEquipmentSlotUIs.Length; i++)
         {
-            if(handEquipmentSlotUIs[i].rightHandSlot01)
+            if (handEquipmentSlotUIs[i].rightHandSlot01)
             {
                 handEquipmentSlotUIs[i].AddItem(inventory.weaponsInRightHandSlots[0]);
             }
-            else if(handEquipmentSlotUIs[i].rightHandSlot02)
+            else if (handEquipmentSlotUIs[i].rightHandSlot02)
             {
-                 handEquipmentSlotUIs[i].AddItem(inventory.weaponsInRightHandSlots[1]);
+                handEquipmentSlotUIs[i].AddItem(inventory.weaponsInRightHandSlots[1]);
             }
-            else if(handEquipmentSlotUIs[i].rightHandSlot03)
+            else if (handEquipmentSlotUIs[i].rightHandSlot03)
             {
-                 handEquipmentSlotUIs[i].AddItem(inventory.weaponsInRightHandSlots[2]);
-            }else if (handEquipmentSlotUIs[i].leftHandSlot01)
+                handEquipmentSlotUIs[i].AddItem(inventory.weaponsInRightHandSlots[2]);
+            }
+            else if (handEquipmentSlotUIs[i].leftHandSlot01)
             {
                 handEquipmentSlotUIs[i].AddItem(inventory.weaponsInLeftHandSlots[0]);
             }
-            else if(handEquipmentSlotUIs[i].leftHandSlot02)
+            else if (handEquipmentSlotUIs[i].leftHandSlot02)
             {
-                 handEquipmentSlotUIs[i].AddItem(inventory.weaponsInLeftHandSlots[1]);
+                handEquipmentSlotUIs[i].AddItem(inventory.weaponsInLeftHandSlots[1]);
             }
-            else if(handEquipmentSlotUIs[i].leftHandSlot03)
+            else if (handEquipmentSlotUIs[i].leftHandSlot03)
             {
-                 handEquipmentSlotUIs[i].AddItem(inventory.weaponsInLeftHandSlots[2]);
+                handEquipmentSlotUIs[i].AddItem(inventory.weaponsInLeftHandSlots[2]);
             }
 
         }

@@ -29,4 +29,32 @@ public class HandEquipmentSlotUI : MonoBehaviour
         icon.enabled = false;
         icon.gameObject.SetActive(false);
     }
+
+    public void SelectThisSlot()
+    {
+        if(rightHandSlot01)
+        {
+            UIManager.Instance.rightHandlSolot01Selected = true;
+        }
+        else if (rightHandSlot02)
+        {
+            UIManager.Instance.rightHandlSolot02Selected = true;
+        }
+        else if (rightHandSlot03)
+        {
+            UIManager.Instance.rightHandlSolot03Selected = true;
+        }
+        else if (leftHandSlot01)
+        {
+            UIManager.Instance.leftHandlSolot01Selected = true;
+        }
+        else if (leftHandSlot02)
+        {
+            UIManager.Instance.leftHandlSolot02Selected = true;
+        }
+        else if (leftHandSlot03)
+        {
+            UIManager.Instance.leftHandlSolot03Selected = true;
+        }
+    }
 }

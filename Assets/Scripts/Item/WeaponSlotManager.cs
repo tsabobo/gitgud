@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSlotManager : MonoBehaviour
+public class WeaponSlotManager : Singleton<WeaponSlotManager>
 {
     WeaponHolderSlot leftHandSlot;
     WeaponHolderSlot rightHandSlot;

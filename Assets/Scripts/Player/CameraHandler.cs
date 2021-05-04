@@ -153,10 +153,10 @@ public class CameraHandler : Singleton<CameraHandler>
                         }
                         else
                         {
-
+                            availableTargets.Add(character);
                         }
                     }
-                    availableTargets.Add(character);
+                    
                 }
             }
         }

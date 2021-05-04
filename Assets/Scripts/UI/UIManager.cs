@@ -7,10 +7,21 @@ public class UIManager : Singleton<UIManager>
 {
     public PlayerInventory playerInventory;
     public EquipmentWindowUI equipmentWindowUI;
+
     [Header("UI Windows")]
     public GameObject hudWindow;
     public GameObject selectWindow;
+    public GameObject equipmentScreenWindow;
     public GameObject weaponInventoryWindow;
+    
+    [Header("Equipment Window Slot Selected")]
+    public bool rightHandlSolot01Selected;
+    public bool rightHandlSolot02Selected;
+    public bool rightHandlSolot03Selected;
+    public bool leftHandlSolot01Selected;
+    public bool leftHandlSolot02Selected;
+    public bool leftHandlSolot03Selected;
+
     [Header("Weapon Inventory")]
     public GameObject weaponInventorySlotPrefab;
     public Transform weaponInventorySlotsParent;
@@ -59,7 +70,19 @@ public class UIManager : Singleton<UIManager>
 
     public void CloseAllInventoryWindows()
     {
+        ResetAllSelectedSlots();
         weaponInventoryWindow.SetActive(false);
+        equipmentScreenWindow.SetActive(false);
     }
 
+
+    public void ResetAllSelectedSlots() 
+    {
+        rightHandlSolot01Selected = false;
+        rightHandlSolot02Selected = false;
+        rightHandlSolot03Selected = false;
+        leftHandlSolot01Selected = false;
+        leftHandlSolot02Selected = false;
+        leftHandlSolot03Selected = false;
+    }
 }
