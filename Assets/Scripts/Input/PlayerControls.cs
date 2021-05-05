@@ -223,6 +223,22 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Y"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b6514bb-3feb-465f-bb96-7ea8bc70c0ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""X"",
+                    ""type"": ""Button"",
+                    ""id"": ""a460f55b-905f-4763-98b4-df6e9878d921"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""cb9c786f-d689-4d6d-8392-cc492e8e0971"",
@@ -390,6 +406,50 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""LockOn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6bede7f6-4c7b-44ea-93e7-b59eec7f3d6c"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Y"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ff0f831-e5c3-4263-94b6-2d623e8b1c2c"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""X"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd67dba6-e227-4278-bd1d-f2e343204c86"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""X"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f7a6650-5c16-4783-aa94-62c691ecae9c"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Y"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -536,6 +596,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerAction_RB = m_PlayerAction.FindAction("RB", throwIfNotFound: true);
         m_PlayerAction_RT = m_PlayerAction.FindAction("RT", throwIfNotFound: true);
         m_PlayerAction_A = m_PlayerAction.FindAction("A", throwIfNotFound: true);
+        m_PlayerAction_Y = m_PlayerAction.FindAction("Y", throwIfNotFound: true);
+        m_PlayerAction_X = m_PlayerAction.FindAction("X", throwIfNotFound: true);
         m_PlayerAction_Jump = m_PlayerAction.FindAction("Jump", throwIfNotFound: true);
         m_PlayerAction_Inventory = m_PlayerAction.FindAction("Inventory", throwIfNotFound: true);
         m_PlayerAction_LockOn = m_PlayerAction.FindAction("LockOn", throwIfNotFound: true);
@@ -655,6 +717,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerAction_RB;
     private readonly InputAction m_PlayerAction_RT;
     private readonly InputAction m_PlayerAction_A;
+    private readonly InputAction m_PlayerAction_Y;
+    private readonly InputAction m_PlayerAction_X;
     private readonly InputAction m_PlayerAction_Jump;
     private readonly InputAction m_PlayerAction_Inventory;
     private readonly InputAction m_PlayerAction_LockOn;
@@ -666,6 +730,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @RB => m_Wrapper.m_PlayerAction_RB;
         public InputAction @RT => m_Wrapper.m_PlayerAction_RT;
         public InputAction @A => m_Wrapper.m_PlayerAction_A;
+        public InputAction @Y => m_Wrapper.m_PlayerAction_Y;
+        public InputAction @X => m_Wrapper.m_PlayerAction_X;
         public InputAction @Jump => m_Wrapper.m_PlayerAction_Jump;
         public InputAction @Inventory => m_Wrapper.m_PlayerAction_Inventory;
         public InputAction @LockOn => m_Wrapper.m_PlayerAction_LockOn;
@@ -690,6 +756,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @A.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnA;
                 @A.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnA;
                 @A.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnA;
+                @Y.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnY;
+                @Y.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnY;
+                @Y.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnY;
+                @X.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnX;
+                @X.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnX;
+                @X.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnX;
                 @Jump.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
@@ -715,6 +787,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @A.started += instance.OnA;
                 @A.performed += instance.OnA;
                 @A.canceled += instance.OnA;
+                @Y.started += instance.OnY;
+                @Y.performed += instance.OnY;
+                @Y.canceled += instance.OnY;
+                @X.started += instance.OnX;
+                @X.performed += instance.OnX;
+                @X.canceled += instance.OnX;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -798,6 +876,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnRB(InputAction.CallbackContext context);
         void OnRT(InputAction.CallbackContext context);
         void OnA(InputAction.CallbackContext context);
+        void OnY(InputAction.CallbackContext context);
+        void OnX(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);

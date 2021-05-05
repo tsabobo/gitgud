@@ -136,6 +136,8 @@ MonoBehaviour:
   mouseY: 0
   b_Input: 0
   a_Input: 0
+  y_Input: 0
+  x_Input: 0
   rb_Input: 0
   rt_Input: 0
   jump_Input: 0
@@ -147,6 +149,7 @@ MonoBehaviour:
   d_Pad_Down: 0
   d_Pad_Left: 0
   d_Pad_Right: 0
+  twoHandFlag: 0
   sprintFlag: 0
   comboFlag: 0
   inventoryFlag: 0

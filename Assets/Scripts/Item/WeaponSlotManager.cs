@@ -49,19 +49,31 @@ public class WeaponSlotManager : Singleton<WeaponSlotManager>
         }
         else
         {
-            rightHandSlot.LoadWeaponModel(weaponItem);
-            LoadRighttHandDamageCollider();
-            QuickSlotsUI.Instance.UpdateWeaponQuickSlotsUI(isLeft, weaponItem);
-            #region  Handle Weapon Idle Animations
-            if (weaponItem != null)
+            if (InputHandler.Instance.twoHandFlag)
             {
-                animator.CrossFade(weaponItem.right_Hand_Idle, 0.2f);
+                // Move current left hand weapon to the back or disable it 
+                animator.CrossFade(weaponItem.two_Handed_Idle, 0.2f);
+
             }
             else
             {
-                animator.CrossFade("Right Arm Empty", 0.2f);
+                #region  Handle Weapon Idle Animations
+                animator.CrossFade("Both Arms Empty", 0.2f);
+                if (weaponItem != null)
+                {
+                    animator.CrossFade(weaponItem.right_Hand_Idle, 0.2f);
+                }
+                else
+                {
+                    animator.CrossFade("Right Arm Empty", 0.2f);
+                }
+                #endregion
             }
-            #endregion
+
+            rightHandSlot.LoadWeaponModel(weaponItem);
+            LoadRighttHandDamageCollider();
+            QuickSlotsUI.Instance.UpdateWeaponQuickSlotsUI(isLeft, weaponItem);
+
         }
     }
 

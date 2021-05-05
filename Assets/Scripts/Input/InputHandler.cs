@@ -18,6 +18,8 @@ public class InputHandler : Singleton<InputHandler>
     public bool b_Input;
     // A button (south button on gamepad) is pressed 
     public bool a_Input;
+    public bool y_Input;
+    public bool x_Input;
     // RB button (R1)
     public bool rb_Input;
     // RT button (R2)
@@ -32,6 +34,7 @@ public class InputHandler : Singleton<InputHandler>
     public bool d_Pad_Left;
     public bool d_Pad_Right;
     #endregion
+    public bool twoHandFlag;
     public bool sprintFlag;
     public bool comboFlag;
     public bool inventoryFlag;
@@ -73,6 +76,8 @@ public class InputHandler : Singleton<InputHandler>
             inputActions.PlayerAction.Inventory.performed += i => inventory_Input = true;
             inputActions.PlayerAction.Jump.performed += i => jump_Input = true;
             inputActions.PlayerAction.LockOn.performed += i => lockOn_Input = true;
+            inputActions.PlayerAction.Y.performed += i => y_Input = true;
+            inputActions.PlayerAction.X.performed += i => x_Input = true;
         }
 
         inputActions.Enable();
@@ -90,6 +95,7 @@ public class InputHandler : Singleton<InputHandler>
         HandleQuickSlotsInput();
         HandleInventoryInput();
         HandleLockOnInput();
+        HandleTowHandInput();
     }
 
     private void HandleMoveInput(float delta)
@@ -228,5 +234,26 @@ public class InputHandler : Singleton<InputHandler>
 
     }
 
+    private void HandleTowHandInput()
+    {
+        if(y_Input)
+        {
+            y_Input = false;
+            twoHandFlag = !twoHandFlag;
+
+            if(twoHandFlag)
+            {
+                // Enable tow handing, load only right hand
+                WeaponSlotManager.Instance.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+
+            }
+            else
+            {
+                // load both hands
+                WeaponSlotManager.Instance.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+                WeaponSlotManager.Instance.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
+            }
+        }
+    }
 
 }
