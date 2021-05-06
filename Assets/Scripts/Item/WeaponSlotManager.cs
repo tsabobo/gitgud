@@ -6,6 +6,7 @@ public class WeaponSlotManager : Singleton<WeaponSlotManager>
 {
     WeaponHolderSlot leftHandSlot;
     WeaponHolderSlot rightHandSlot;
+    WeaponHolderSlot backSlot;
     DamageCollider leftHandDamageCollider;
     DamageCollider rightHandDamageCollider;
     Animator animator;
@@ -26,6 +27,10 @@ public class WeaponSlotManager : Singleton<WeaponSlotManager>
             {
                 rightHandSlot = slot;
             }
+            else if (slot.isBackSlot)
+            {
+                backSlot = slot;
+            }
         }
     }
     #region  Handle weapons damage collider
@@ -33,6 +38,7 @@ public class WeaponSlotManager : Singleton<WeaponSlotManager>
     {
         if (isLeft)
         {
+            leftHandSlot.currentWeapon = weaponItem;
             leftHandSlot.LoadWeaponModel(weaponItem);
             LoadLeftHandDamageCollider();
             QuickSlotsUI.Instance.UpdateWeaponQuickSlotsUI(isLeft, weaponItem);
@@ -52,6 +58,8 @@ public class WeaponSlotManager : Singleton<WeaponSlotManager>
             if (InputHandler.Instance.twoHandFlag)
             {
                 // Move current left hand weapon to the back or disable it 
+                backSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
+                leftHandSlot.UnloadWeaponAndDestroy();
                 animator.CrossFade(weaponItem.two_Handed_Idle, 0.2f);
 
             }
@@ -59,6 +67,8 @@ public class WeaponSlotManager : Singleton<WeaponSlotManager>
             {
                 #region  Handle Weapon Idle Animations
                 animator.CrossFade("Both Arms Empty", 0.2f);
+
+                backSlot.UnloadWeaponAndDestroy();
                 if (weaponItem != null)
                 {
                     animator.CrossFade(weaponItem.right_Hand_Idle, 0.2f);
@@ -69,7 +79,7 @@ public class WeaponSlotManager : Singleton<WeaponSlotManager>
                 }
                 #endregion
             }
-
+            rightHandSlot.currentWeapon = weaponItem;
             rightHandSlot.LoadWeaponModel(weaponItem);
             LoadRighttHandDamageCollider();
             QuickSlotsUI.Instance.UpdateWeaponQuickSlotsUI(isLeft, weaponItem);
