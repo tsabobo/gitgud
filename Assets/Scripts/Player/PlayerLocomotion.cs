@@ -52,7 +52,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         playerManager.isGrounded = true;
         // Ignore some layers
-        ignoreForGroundCheck = ~(1 << 8 | 1 << 11 | 1 << 12);
+       // ignoreForGroundCheck = ~(1 << 8 | 1 << 11 | 1 << 12);
     }
 
     #region Movement

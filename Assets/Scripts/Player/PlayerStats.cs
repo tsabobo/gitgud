@@ -2,15 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : CharacterStats
 {
-    // Vigor
-    public int healthLevel = 10;
-    public int maxHealth;
-    public int currentHealth;
-    public int staminaLevel;
-    public int maxStamina;
-    public int currentStamina;
+    
     AnimatorHandler animatorHandler;
     void Awake()
     {
